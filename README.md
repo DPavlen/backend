@@ -3,6 +3,8 @@
 [![Django](https://img.shields.io/badge/Django-4.2.1-6495ED)](https://www.djangoproject.com)
 [![djangorestframework](https://img.shields.io/badge/djangorestframework-3.14.0-6495ED)](https://www.django-rest-framework.org/)  
 [![django-rest-authtoken](https://img.shields.io/badge/authtoken-2.1.4-6495ED)](https://www.django-rest-framework.org/api-guide/authentication/)
+[![Postman](https://img.shields.io/badge/Postman-10.18.9-6495ED?style=flat-square&logo=postman)](https://www.postman.com/)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-blue)
 
 
 ## Описание
