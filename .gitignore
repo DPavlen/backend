@@ -146,8 +146,6 @@ dmypy.json
 .mypy_cache
 
 # папки со статикой и медиа
-static/
-yatube/posts/static/
 CryptoBro/media/
 
 Api_cryptobro. All.odt
@@ -156,4 +154,5 @@ Api_cryptobro ALL.odt
 .gitignore
 API - Login.odt
 User.odt
-*.pem
+.pem
+sc.py

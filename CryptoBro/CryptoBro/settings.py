@@ -1,5 +1,9 @@
 import os
 from datetime import timedelta
+from django.core.management.utils import get_random_secret_key
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -9,19 +13,22 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '%&g08@fa173axmj&5m_@in$)t)56m46ud!ykhgxyt#$f3+uv0e'
+
+SECRET_KEY = os.getenv("SECRET_KEY", get_random_secret_key())
+#SECRET_KEY = 'o-r2-(t(y-evahg09wiya13+zyh(f$*avy_of$z=2m!+j)ae3j'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = [
-    'localhost',
-    '127.0.0.1',
-    '[::1]',
-    'testserver',
-    '52.91.232.233',
-    'api.cryptobro.pro',
-]
+ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "*").split(" ")
+
+#ALLOWED_HOSTS = [
+#    'localhost',
+#    '127.0.0.1',
+#    '[::1]',    
+#    '52.91.232.233',
+#    'api.cryptobro.pro',
+#]
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
@@ -97,12 +104,13 @@ TEMPLATES = [
 CORS_ALLOWED_ORIGINS = [
     "https://test.cryptobro.pro",
     "https://api.cryptobro.pro",
+    "https://cryptobro.pro",
 ]
 
 # Отправка сообщения на почту
-DOMAIN_NAME = 'yamdb.com'
-EMAIL_HOST = f'support@{DOMAIN_NAME}'
-DEFAULT_FROM_EMAIL = "jobpavlenko@yandex.ru"
+DOMAIN_NAME = 'cryptobro.pro'
+EMAIL_HOST = f'info@{DOMAIN_NAME}'
+DEFAULT_FROM_EMAIL = "info@cryptobro.pro"
 
 
 WSGI_APPLICATION = 'CryptoBro.wsgi.application'
@@ -119,15 +127,26 @@ WSGI_APPLICATION = 'CryptoBro.wsgi.application'
 # }
 
 DATABASES = {
-     "default": {
-         "ENGINE": "django.db.backends.postgresql_psycopg2",
-         "NAME": "cryptobro_dev",
-         "USER": "postgres",
-         "PASSWORD": "ldslfnH0-%ka792JKS",
-         "HOST": "cryprobro-db-dev.cmthskjql8iw.us-east-1.rds.amazonaws.com",
-         "PORT": "5432",
+    "default": {
+        "ENGINE": "django.db.backends.postgresql_psycopg2",
+        "NAME": os.getenv("POSTGRES_DB", ""),
+        "USER": os.getenv("POSTGRES_USER", ""),
+        "PASSWORD": os.getenv("POSTGRES_PASSWORD", ""),
+        "HOST": os.getenv("DB_HOST", ""),
+        "PORT": os.getenv("DB_PORT", 5432),
     }
- }
+}
+
+# DATABASES = {
+#      "default": {
+#          "ENGINE": "django.db.backends.postgresql_psycopg2",
+#          "NAME": "cryptobro_dev",
+#          "USER": "postgres",
+#          "PASSWORD": "ldslfnH0-%ka792JKS",
+#          "HOST": "cryprobro-db-dev.cmthskjql8iw.us-east-1.rds.amazonaws.com",
+#          "PORT": "5432",
+#     }
+#  }
 
 
 # Password validation
@@ -152,7 +171,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
-LANGUAGE_CODE = "ru"
+LANGUAGE_CODE = "en"
 
 TIME_ZONE = 'UTC'
 
